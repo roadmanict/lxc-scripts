@@ -1,6 +1,6 @@
 #/bin/bash
 rm /etc/apt/sources.list.d/pve-enterprise.list
-echo "deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription" > /etc/sources.list.d/pve-no-subscription.list
+echo "deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription" >| /etc/apt/sources.list.d/pve-no-subscription.list
 apt update
 apt full-upgrade --yes
 

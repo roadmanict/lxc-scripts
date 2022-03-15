@@ -1,3 +1,3 @@
 #/bin/bash
 apt update
-apt full-upgrade
+apt full-upgrade -y

@@ -2,5 +2,5 @@
 
 ## Install
 ```
-wget -q -O - https://raw.githubusercontent.com/roadmanict/lxc-scripts/main/install.sh
+wget -q -O - https://raw.githubusercontent.com/roadmanict/lxc-scripts/main/install.sh | bash
 ```

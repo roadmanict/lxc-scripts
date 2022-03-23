@@ -2,7 +2,7 @@
 set -e
 apt update
 apt full-upgrade --yes
-apt install sudo unattended-upgrades apt-listchanges --yes
+apt install git sudo unattended-upgrades apt-listchanges --yes
 
 # Configure unattended updates
 echo unattended-upgrades unattended-upgrades/enable_auto_updates boolean true | debconf-set-selections
@@ -23,3 +23,8 @@ chmod 700 /home/lxc/.ssh
 chmod 600 /home/lxc/.ssh/authorized_keys
 
 chown -R lxc:lxc /home/lxc/.ssh
+
+su - lxc <<SHT
+    git clone https://github.com/roadmanict/pve ./pve || echo "Repository exists"
+    (cd pve && git pull --rebase)
+SHT

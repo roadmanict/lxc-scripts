@@ -1,7 +1,7 @@
 #/bin/bash
 set -e
-apt update
-apt full-upgrade --yes
+wget -q -O - https://raw.githubusercontent.com/roadmanict/lxc-scripts/main/update.sh | bash
+
 apt install git sudo unattended-upgrades apt-listchanges --yes
 
 # Configure unattended updates
@@ -9,7 +9,9 @@ echo unattended-upgrades unattended-upgrades/enable_auto_updates boolean true | 
 dpkg-reconfigure -f noninteractive unattended-upgrades
 
 # Create new user
-useradd -s /bin/bash lxc || echo "User already exists"
+useradd -m -s /bin/bash lxc || echo "User already exists"
+
+passwd lxc
 
 usermod -a -G sudo lxc
 

@@ -14,6 +14,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.portainer.rule=Host(`portainer.svc.gweggemans.nl`)"
+      - "traefik.http.routers.portainer.loadbalancer.server.port=9000"
       - "traefik.http.routers.portainer.entrypoints=web"
     networks:
       - traefik

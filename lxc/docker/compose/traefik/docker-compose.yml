@@ -11,12 +11,12 @@ services:
       - --api.insecure
     ports:
       - "80:80"
-      - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.rule=Host(`traefik.svc.gweggemans.nl`)"
+      - "traefik.http.routers.traefik.loadbalancer.server.port=8080"
     networks:
       - traefik
 

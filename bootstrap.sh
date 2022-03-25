@@ -1,6 +1,7 @@
 #/bin/bash
 set -e
-wget -q -O - https://raw.githubusercontent.com/roadmanict/lxc-scripts/main/update.sh | bash
+apt update
+apt full-upgrade --yes
 
 apt install git sudo unattended-upgrades apt-listchanges --yes
 

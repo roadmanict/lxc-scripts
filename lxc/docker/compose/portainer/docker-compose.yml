@@ -20,4 +20,5 @@ services:
       - traefik
 
 networks:
-  traefik: {}
+  traefik:
+    name: traefik

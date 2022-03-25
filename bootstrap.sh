@@ -27,9 +27,9 @@ chown -R lxc:lxc /home/lxc/.ssh
 # Clone this repository as new user
 su - lxc <<SHT
     git clone https://github.com/roadmanict/pve ./pve || echo "Repository exists"
-    (cd pve && git pull --rebase)
 SHT
 
+echo ""
 echo "-------------------"
 echo "Run passwd lxc"
 echo "-------------------"

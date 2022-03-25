@@ -11,8 +11,6 @@ dpkg-reconfigure -f noninteractive unattended-upgrades
 # Create new user
 useradd -m -s /bin/bash lxc || echo "User already exists"
 
-passwd lxc
-
 usermod -a -G sudo lxc
 
 mkdir /home/lxc/.ssh || echo "Directory exists"
@@ -31,3 +29,7 @@ su - lxc <<SHT
     git clone https://github.com/roadmanict/pve ./pve || echo "Repository exists"
     (cd pve && git pull --rebase)
 SHT
+
+echo "-------------------"
+echo "Run passwd lxc"
+echo "-------------------"

@@ -9,7 +9,7 @@ echo unattended-upgrades unattended-upgrades/enable_auto_updates boolean true | 
 dpkg-reconfigure -f noninteractive unattended-upgrades
 
 # Create new user
-useradd -s /bin/bash -m lxc || echo "User already exists"
+useradd -s /bin/bash lxc || echo "User already exists"
 
 usermod -a -G sudo lxc
 
@@ -24,6 +24,7 @@ chmod 600 /home/lxc/.ssh/authorized_keys
 
 chown -R lxc:lxc /home/lxc/.ssh
 
+# Clone this repository as new user
 su - lxc <<SHT
     git clone https://github.com/roadmanict/pve ./pve || echo "Repository exists"
     (cd pve && git pull --rebase)

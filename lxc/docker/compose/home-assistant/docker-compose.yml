@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 
 services:
   portainer:
@@ -6,8 +6,10 @@ services:
     container_name: home-assistant
     restart: unless-stopped
     privileged: true
+    network_mode: "host"
     volumes:
-      - "/dev/p1:/dev/p1:ro"
+      - "/dev/p1:/dev/ttyUSB0:ro"
+      - /etc/localtime:/etc/localtime:ro
       - /mnt/docker-volumes/home-assistant/config:/config
     environment:
       - TZ=europe/amsterdam

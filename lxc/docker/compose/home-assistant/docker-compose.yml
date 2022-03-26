@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  portainer:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: home-assistant
+    restart: unless-stopped
+    privileged: true
+    volumes:
+      - "/dev/p1:/dev/p1:ro"
+      - /mnt/docker-volumes/home-assistant/config:/config
+    environment:
+      - TZ=europe/amsterdam
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.home-assistant.rule=Host(`home-assistant.svc.gweggemans.nl`)"
+      # - "traefik.http.routers.portainer.service=portainer@docker"
+      - "traefik.http.routers.home-assistant.entrypoints=web"
+      - "traefik.http.services.home-assistant.loadbalancer.server.port=8123"
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true

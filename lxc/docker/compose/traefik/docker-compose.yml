@@ -27,7 +27,7 @@ services:
       - "traefik.http.routers.traefik.entrypoints=web"
       - "traefik.http.routers.traefik.rule=Host(`traefik.svc.gweggemans.nl`)"
       - "traefik.http.routers.traefik.service=api@internal"
-
+      - "traefik.http.services.portainer.loadbalancer.server.port=8080"
 networks:
   traefik:
     external: true

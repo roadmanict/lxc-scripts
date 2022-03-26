@@ -1,24 +1,29 @@
 version: "3.3"
 
 services:
-
   traefik:
     image: "traefik:v2.6"
     container_name: "traefik"
+    restart: unless-stopped
     command:
-      - --entrypoints.web.address=:80
-      - --providers.docker
-      - --api.insecure
+      - "--log=true"
+      - "--log.level=DEBUG"
+      - "--api.dashboard=true"
+      - "--pilot.dashboard=false"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=traefik"
+      - "--accesslog=true"
+      - "--entrypoints.web.address=:80"
     ports:
       - "80:80"
+    networks:
+      - traefik
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.rule=Host(`traefik.svc.gweggemans.nl`)"
-      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
-    networks:
-      - traefik
 
 networks:
   traefik:

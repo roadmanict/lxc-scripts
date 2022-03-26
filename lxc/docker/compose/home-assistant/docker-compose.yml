@@ -6,7 +6,6 @@ services:
     container_name: home-assistant
     restart: unless-stopped
     privileged: true
-    network_mode: "host"
     volumes:
       - "/dev/p1:/dev/ttyUSB0:ro"
       - /etc/localtime:/etc/localtime:ro
@@ -16,7 +15,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.home-assistant.rule=Host(`home-assistant.svc.gweggemans.nl`)"
-      # - "traefik.http.routers.portainer.service=portainer@docker"
+      - "traefik.http.routers.home-assistant.service=home-assistant@docker"
       - "traefik.http.routers.home-assistant.entrypoints=web"
       - "traefik.http.services.home-assistant.loadbalancer.server.port=8123"
     networks:

@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     privileged: true
     volumes:
-      - "/dev/p1:/dev/ttyUSB0:ro"
+      - "/dev/p1:/dev/ttyUSB0:rwm"
       - /etc/localtime:/etc/localtime:ro
       - /mnt/docker-volumes/home-assistant/config:/config
     environment:

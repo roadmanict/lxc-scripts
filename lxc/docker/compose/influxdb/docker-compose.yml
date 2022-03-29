@@ -25,6 +25,7 @@ services:
     container_name: telegraf_energy
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf
     environment:
       - TZ=europe/amsterdam
     env_file:

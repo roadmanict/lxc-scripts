@@ -22,8 +22,7 @@ services:
       - influxdb-telegraf-net
 
 networks:
-  default:
-    external:
-      name: traefik
+  traefik:
+    external: true
   influxdb-telegraf-net: 
     external: true

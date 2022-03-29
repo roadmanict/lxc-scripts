@@ -10,6 +10,9 @@ services:
       - /mnt/docker-volumes/influxdb:/root/.influxdb2
     environment:
       - TZ=europe/amsterdam
+      - INFLUXDB_UDP_ENABLED=true
+    ports:
+      - 8089:8089
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.influxdb.rule=Host(`influxdb.svc.gweggemans.nl`)"
@@ -25,7 +28,7 @@ services:
     container_name: telegraf_energy
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./telegraf.conf:/etc/telegraf/telegraf.conf
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
     environment:
       - TZ=europe/amsterdam
     env_file:
@@ -38,4 +41,4 @@ networks:
   traefik:
     external: true
   influxdb-telegraf-net: 
-    name: influxdb-telegraf-net
+    external: true

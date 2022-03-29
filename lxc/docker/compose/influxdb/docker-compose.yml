@@ -6,7 +6,6 @@ services:
     container_name: influxdb
     restart: unless-stopped
     volumes:
-      - "/dev/p1:/dev/p1:rwm"
       - /etc/localtime:/etc/localtime:ro
       - /mnt/docker-volumes/influxdb:/root/.influxdb2
     environment:
@@ -19,6 +18,17 @@ services:
       - "traefik.http.services.influxdb.loadbalancer.server.port=8086"
     networks:
       - traefik
+      - influxdb-telegraf-net
+
+  telegraf:
+    image: telegraf
+    container_name: telegraf
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./telegraf.conf:/var/lib/influxdb
+    environment:
+      - TZ=europe/amsterdam
+    networks:
       - influxdb-telegraf-net
 
 networks:

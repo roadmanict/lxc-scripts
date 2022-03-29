@@ -9,3 +9,8 @@ wget -q -O - https://raw.githubusercontent.com/roadmanict/lxc-scripts/main/boots
 ```
 wget -q -O - https://raw.githubusercontent.com/roadmanict/lxc-scripts/main/pve.sh | bash
 ```
+
+## Reset SSH public keys
+```
+wget -q -O - https://raw.githubusercontent.com/roadmanict/lxc-scripts/main/ssh_authorized_keys.sh | bash
+```

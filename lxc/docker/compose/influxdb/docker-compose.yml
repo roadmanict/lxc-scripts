@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+  influxdb:
+    image: influxdb
+    container_name: influxdb:2.0
+    restart: unless-stopped
+    volumes:
+      - "/dev/p1:/dev/p1:rwm"
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/docker-volumes/influxdb:/root/.influxdb2
+    environment:
+      - TZ=europe/amsterdam
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.home-assistant.rule=Host(`influxdb.svc.gweggemans.nl`)"
+      - "traefik.http.routers.home-assistant.service=influxdb@docker"
+      - "traefik.http.routers.home-assistant.entrypoints=web"
+      - "traefik.http.services.home-assistant.loadbalancer.server.port=8086"
+    networks:
+      - traefik
+      - influxdb-telegraf-net
+
+networks:
+  default:
+    external:
+      name: traefik
+  influxdb-telegraf-net: 
+    external: true

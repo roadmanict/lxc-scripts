@@ -20,14 +20,16 @@ services:
       - traefik
       - influxdb-telegraf-net
 
-  telegraf:
+  telegraf_energy:
     image: telegraf
-    container_name: telegraf
+    container_name: telegraf_energy
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./telegraf.conf:/var/lib/influxdb
     environment:
       - TZ=europe/amsterdam
+    env_file:
+      - telegraf-energy.env
+      - telegraf-energy-secrets.env
     networks:
       - influxdb-telegraf-net
 

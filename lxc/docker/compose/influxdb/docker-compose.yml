@@ -25,4 +25,4 @@ networks:
   traefik:
     external: true
   influxdb-telegraf-net: 
-    external: true
+    name: influxdb-telegraf-net

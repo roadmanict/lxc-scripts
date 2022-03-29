@@ -29,8 +29,8 @@ services:
     environment:
       - TZ=europe/amsterdam
     env_file:
-      - telegraf-energy.env
-      - telegraf-energy-secrets.env
+      - ./telegraf-energy.env
+      - ./telegraf-energy-secrets.env
     networks:
       - influxdb-telegraf-net
 

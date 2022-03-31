@@ -15,7 +15,7 @@ services:
       - "traefik.http.services.grafana.loadbalancer.server.port=3000"
     networks:
       - traefik
-
+    user: "472"
 networks:
   traefik:
     external: true

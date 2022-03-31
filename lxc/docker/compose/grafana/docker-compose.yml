@@ -1,9 +1,11 @@
 version: "3"
 services:
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana-oss
     container_name: grafana
+    restart: unless-stopped
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - /mnt/docker-volumes/grafana:/var/lib/grafana
     labels:
       - "traefik.enable=true"

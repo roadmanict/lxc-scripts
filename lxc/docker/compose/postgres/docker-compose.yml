@@ -15,4 +15,5 @@ volumes:
     driver: local
 
 networks:
-  postgres: {}
+  postgres:
+    name: postgres

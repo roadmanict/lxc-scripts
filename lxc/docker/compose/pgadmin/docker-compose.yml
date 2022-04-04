@@ -1,0 +1,19 @@
+services:
+  pgadmin:
+    image: dpage/pgadmin4:6
+    restart: unless-stopped
+    networks:
+      - postgres
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    env_file:
+      - .env
+      - .secrets.env
+
+volumes:
+  pgadmin:
+    driver: local
+
+networks:
+  postgres:
+    external: true

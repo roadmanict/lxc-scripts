@@ -1,5 +1,6 @@
 services:
   pgadmin:
+    container_name: pgadmin
     image: dpage/pgadmin4:6
     restart: unless-stopped
     networks:
@@ -9,6 +10,12 @@ services:
     env_file:
       - .env
       - .secrets.env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pgadmin.rule=Host(`pgadmin.svc.gweggemans.nl`)"
+      - "traefik.http.routers.pgadmin.service=pgadmin@docker"
+      - "traefik.http.routers.pgadmin.entrypoints=web"
+      - "traefik.http.services.pgadmin.loadbalancer.server.port=80"
 
 volumes:
   pgadmin:
@@ -16,4 +23,6 @@ volumes:
 
 networks:
   postgres:
+    external: true
+  traefik:
     external: true

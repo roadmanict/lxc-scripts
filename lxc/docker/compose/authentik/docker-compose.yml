@@ -27,7 +27,28 @@ services:
       - "traefik.http.routers.authentik.rule=Host(`authentik.svc.gweggemans.nl`)"
       - "traefik.http.routers.authentik.service=authentik@docker"
       - "traefik.http.services.authentik.loadbalancer.server.port=9000"
-
+  authentik_worker:
+    image: ghcr.io/goauthentik/server:2022.3.3
+    restart: unless-stopped
+    command: worker
+    container_name: authentik_server
+    networks:
+      - redis
+      - traefik
+      - postgres
+    environment:
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_POSTGRESQL__HOST: postgres
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
+    volumes:
+      - ./media:/media
+      - ./certs:/certs
+      - ./custom-templates:/templates
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file:
+      - .env
 
 networks:
   redis:
@@ -36,9 +57,3 @@ networks:
     external: true
   postgres:
     external: true
-
-volumes:
-  authentik_media:
-    driver: local
-  custom_templates:
-    driver: local

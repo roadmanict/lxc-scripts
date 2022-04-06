@@ -1,0 +1,43 @@
+version: '3.3'
+
+services:
+  authentik_server:
+    image: ghcr.io/goauthentik/server:2022.3.3
+    restart: unless-stopped
+    command: server
+    container_name: authentik_server
+    networks:
+      - redis
+      - traefik
+      - postgres
+    environment:
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_POSTGRESQL__HOST: postgres
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+    volumes:
+      - ./media:/media
+      - ./custom-templates:/templates
+    env_file:
+      - .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.authentik.entrypoints=web"
+      - "traefik.http.routers.authentik.rule=Host(`authentik.svc.gweggemans.nl`)"
+      - "traefik.http.routers.authentik.service=authentik@docker"
+      - "traefik.http.services.authentik.loadbalancer.server.port=9000"
+
+
+networks:
+  redis:
+    external: true
+  traefik:
+    external: true
+  postgres:
+    external: true
+
+volumes:
+  authentik_media:
+    driver: local
+  custom_templates:
+    driver: local

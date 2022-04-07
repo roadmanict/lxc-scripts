@@ -11,6 +11,8 @@ services:
       - traefik
       - postgres
     environment:
+      AUTHENTIK_ERROR_REPORTING__ENABLED: false
+      AUTHENTIK_DISABLE_STARTUP_ANALYTICS: true
       AUTHENTIK_REDIS__HOST: redis
       AUTHENTIK_POSTGRESQL__HOST: postgres
       AUTHENTIK_POSTGRESQL__USER: authentik
@@ -26,7 +28,7 @@ services:
       - "traefik.http.routers.authentik.entrypoints=web"
       - "traefik.http.routers.authentik.rule=Host(`authentik.svc.gweggemans.nl`)"
       - "traefik.http.routers.authentik.service=authentik@docker"
-      - "traefik.http.services.authentik.loadbalancer.server.port=9000"
+      - "traefik.http.services.authentik.loadbalancer.server.port=9443"
   authentik_worker:
     image: ghcr.io/goauthentik/server:2022.3.3
     restart: unless-stopped

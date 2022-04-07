@@ -25,7 +25,7 @@ services:
       - .env
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.authentik.entrypoints=web"
+      - "traefik.http.routers.authentik.entrypoints=websecure"
       - "traefik.http.routers.authentik.rule=Host(`authentik.svc.gweggemans.nl`)"
       - "traefik.http.routers.authentik.service=authentik@docker"
       - "traefik.http.services.authentik.loadbalancer.server.port=9443"

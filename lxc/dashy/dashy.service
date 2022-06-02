@@ -1,0 +1,17 @@
+[Unit]
+Description=Dashy Dashboard
+Requires=Network.target
+After=Network.target
+
+[Service]
+Type=simple
+User=lxc
+WorkingDirectory=/home/lxc/dashy
+ExecStartPre=/usr/bin/git pull
+ExecStartPre=/usr/bin/yarn
+ExecStartPre=/usr/bin/yarn build
+ExecStart=/usr/bin/yarn start
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

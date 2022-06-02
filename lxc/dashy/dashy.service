@@ -1,7 +1,6 @@
 [Unit]
 Description=Dashy Dashboard
-Requires=Network.target
-After=Network.target
+After=network.target
 
 [Service]
 Type=simple

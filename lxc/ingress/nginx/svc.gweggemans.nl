@@ -9,21 +9,28 @@ server {
 
 server {
 	listen 443 ssl;
-	server_name	dashboard.svc.gweggemans.nl;
+	server_name	dashy.svc.gweggemans.nl;
+
+	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
+	
+	location / {
+			proxy_pass http://192.168.2.101:4000;
+	}
+}
+
+server {
+	listen 443 ssl;
+	server_name	jellyfin.svc.gweggemans.nl;
 
         ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
         ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
         ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 
-	autoindex off;
-
-	root /var/www/html/dashboard.svc.gweggemans.nl;
-	gzip_static on;
-	
-	location / {
-		try_files /index.html =404;
-	}
-
+        location / {
+                proxy_pass http://192.168.2.103:8096;
+        }
 }
 
 server {
@@ -66,11 +73,24 @@ server {
 
 server {
 	listen 443 ssl;
+	server_name	adguardhome.svc.gweggemans.nl;
+
+        ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+        ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
+
+	location / {
+                proxy_pass http://192.168.2.205:80;
+        }
+}
+
+server {
+	listen 443 ssl;
 	server_name *.svc.gweggemans.nl;
 
 	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
-	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+        ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 
 	location / {
 		proxy_pass http://192.168.2.202:80;

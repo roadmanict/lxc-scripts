@@ -10,11 +10,11 @@ pageInfo:
 
 # Optional app settings and configuration
 appConfig:
-  theme: colorful
+  theme: nord
 
 # Main content - An array of sections, each containing an array of items
 sections:
-- name: Section 1
+- name: Dashboard
   icon: fas fa-rocket
   items:
   - title: Home Assistant
@@ -23,7 +23,7 @@ sections:
     target: newtab
   - title: Proxmox
     url: https://pve.svc.gweggemans.nl
-    icon: favicon
   - title: Adguard Home
     url: https://adguardhome.svc.gweggemans.nl
-    icon: favicon
+  - title: Portainer
+    url: https://portainer.svc.gweggemans.nl

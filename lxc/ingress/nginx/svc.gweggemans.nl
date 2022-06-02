@@ -16,7 +16,7 @@ server {
 	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 	
 	location / {
-			proxy_pass http://192.168.2.102:4000;
+		proxy_pass http://192.168.2.102:4000;
 	}
 }
 
@@ -24,13 +24,13 @@ server {
 	listen 443 ssl;
 	server_name	jellyfin.svc.gweggemans.nl;
 
-        ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
-        ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
+	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 
-        location / {
-                proxy_pass http://192.168.2.103:8096;
-        }
+	location / {
+		proxy_pass http://192.168.2.103:8096;
+	}
 }
 
 server {
@@ -67,8 +67,8 @@ server {
         ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 
 	location / {
-                proxy_pass http://192.168.2.201:80;
-        }
+		proxy_pass http://192.168.2.201:80;
+	}
 }
 
 server {

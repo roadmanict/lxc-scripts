@@ -18,3 +18,7 @@ echo \
 sudo apt-get update
 
 sudo apt-get install --yes docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+sudo groupadd docker
+
+sudo usermod -aG docker lxc

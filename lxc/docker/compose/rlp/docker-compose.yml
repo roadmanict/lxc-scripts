@@ -1,0 +1,20 @@
+version: "3"
+services:
+  tournaments-api:
+    image: registry.acc.rlp.gweggemans.nl/tournaments-api
+    container_name: tournaments-api
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rlp.rule=Host(`${RLP_DOMAIN}`)"
+      - "traefik.http.routers.rlp.service=tournaments-api@docker"
+      - "traefik.http.routers.rlp.entrypoints=web"
+      - "traefik.http.services.tournaments-api.loadbalancer.server.port=3000"
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true

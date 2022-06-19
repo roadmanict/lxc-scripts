@@ -1,7 +1,7 @@
 #/bin/sh
 sudo apt-get update
 
-sudo apt-get install \
+sudo apt-get install --yes \
     ca-certificates \
     curl \
     gnupg \
@@ -17,4 +17,4 @@ echo \
 
 sudo apt-get update
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo apt-get install --yes docker-ce docker-ce-cli containerd.io docker-compose-plugin

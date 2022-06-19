@@ -1,0 +1,25 @@
+version: "3"
+services:
+  registry:
+    image: registry:2
+    container_name: registry
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - registry:/var/lib/registry
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.rule=Host(`${REGISTRY_DOMAIN}`)"
+      - "traefik.http.routers.grafana.service=registry@docker"
+      - "traefik.http.routers.grafana.entrypoints=web"
+      - "traefik.http.services.grafana.loadbalancer.server.port=5000"
+    networks:
+      - traefik
+
+volumes:
+  registry:
+    driver: local
+
+networks:
+  traefik:
+    external: true

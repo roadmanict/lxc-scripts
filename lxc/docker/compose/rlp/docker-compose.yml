@@ -11,7 +11,7 @@ services:
       - "traefik.http.routers.rlp.rule=Host(`${RLP_DOMAIN}`)"
       - "traefik.http.routers.rlp.service=tournaments-api@docker"
       - "traefik.http.routers.rlp.entrypoints=web"
-      - "traefik.http.services.tournaments-api.loadbalancer.server.port=3000"
+      - "traefik.http.services.rlp.loadbalancer.server.port=3000"
     networks:
       - traefik
 

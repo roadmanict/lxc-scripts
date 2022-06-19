@@ -7,6 +7,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - registry:/var/lib/registry
+    environment:
+      - REGISTRY_HTTP_RELATIVEURLS=true
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.registry.rule=Host(`${REGISTRY_DOMAIN}`)"

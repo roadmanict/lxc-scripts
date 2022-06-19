@@ -12,7 +12,6 @@ server {
 	listen 443 ssl;
 	server_name *.acc.rlp.gweggemans.nl;
 
-	ssl on;
 	ssl_certificate /etc/letsencrypt/live/acc.rlp.gweggemans.nl/fullchain.pem;
 	ssl_certificate_key /etc/letsencrypt/live/acc.rlp.gweggemans.nl/privkey.pem;
 	ssl_trusted_certificate /etc/letsencrypt/live/acc.rlp.gweggemans.nl/chain.pem;

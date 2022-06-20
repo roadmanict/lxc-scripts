@@ -7,15 +7,6 @@ server {
 	return 301 https://$host$request_uri;
 }
 
-stream {
-	server {
-		listen 5432 so_keepalive=on;
-		server_name postgres.acc.rlp.gweggemans.nl;
-
-		proxy_pass 10.0.3.1:5432;
-	}
-}
-
 server {
 	listen 443 ssl;
 	server_name registry.acc.rlp.gweggemans.nl;

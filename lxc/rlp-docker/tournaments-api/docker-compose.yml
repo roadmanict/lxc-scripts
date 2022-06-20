@@ -14,7 +14,10 @@ services:
       - "traefik.http.services.rlp.loadbalancer.server.port=3000"
     networks:
       - traefik
+      - postgres
 
 networks:
   traefik:
+    external: true
+  postgres:
     external: true

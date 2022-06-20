@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  tournaments-listener:
+    image: registry.acc.rlp.gweggemans.nl/tournaments-listener
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
+    networks:
+      - postgres
+      - kafka
+
+networks:
+  postgres:
+    external: true
+  kafka:
+    external: true

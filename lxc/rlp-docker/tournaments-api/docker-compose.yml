@@ -17,9 +17,12 @@ services:
     networks:
       - traefik
       - postgres
+      - kafka
 
 networks:
   traefik:
     external: true
   postgres:
+    external: true
+  kafka:
     external: true

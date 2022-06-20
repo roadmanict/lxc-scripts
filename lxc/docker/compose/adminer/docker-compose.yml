@@ -3,7 +3,7 @@ version: '3.3'
 services:
   adminer:
     container_name: adminer
-    image: adminer:4-fastcgi
+    image: adminer:4
     restart: unless-stopped
     networks:
       - postgres
@@ -17,11 +17,7 @@ services:
       - "traefik.http.routers.adminer.rule=Host(`${ADMINER_DOMAIN}`)"
       - "traefik.http.routers.adminer.service=adminer@docker"
       - "traefik.http.routers.adminer.entrypoints=web"
-      - "traefik.http.services.adminer.loadbalancer.server.port=9000"
-
-volumes:
-  adminer:
-    driver: local
+      - "traefik.http.services.adminer.loadbalancer.server.port=8080"
 
 networks:
   postgres:

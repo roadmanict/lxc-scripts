@@ -6,6 +6,8 @@ services:
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.rlp.rule=Host(`${RLP_DOMAIN}`)"

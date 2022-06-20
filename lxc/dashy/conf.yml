@@ -27,3 +27,12 @@ sections:
     url: https://adguardhome.svc.gweggemans.nl
   - title: Portainer
     url: https://portainer.svc.gweggemans.nl
+- name: Rocket Poule
+  icon: fas fa-rocket
+  items:
+  - title: Traefik
+    url: https://traefik.acc.rlp.gweggemans.nl
+  - title: Portainer
+    url: https://portainer.acc.rlp.gweggemans.nl
+  - title: Docker registry
+    url: https://registry.acc.rlp.gweggemans.nl

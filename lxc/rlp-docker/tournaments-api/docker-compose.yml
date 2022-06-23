@@ -9,6 +9,8 @@ services:
     env_file:
       - ../.env
       - .env
+    environment:
+      - RLP_DOMAIN
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.tournaments-api.rule=Host(`${RLP_DOMAIN}`) && PathPrefix(`/api/tournaments`)"

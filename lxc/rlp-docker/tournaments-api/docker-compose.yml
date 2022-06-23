@@ -7,13 +7,12 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
     env_file:
-      - ../.env
       - .env
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.tournaments-api.rule=Host(`${RLP_DOMAIN}`) && PathPrefix(`/api/tournaments`)"
-      # - "traefik.http.middlewares.tournamentsapipathstrip.stripprefix.prefixes=/api"
-      # - "traefik.http.routers.tournaments-api.middlewares=tournamentsapipathstrip@docker"
+      - "traefik.http.middlewares.tournamentsapipathstrip.stripprefix.prefixes=/api"
+      - "traefik.http.routers.tournaments-api.middlewares=tournamentsapipathstrip@docker"
       - "traefik.http.routers.tournaments-api.service=tournaments-api@docker"
       - "traefik.http.routers.tournaments-api.entrypoints=web"
       - "traefik.http.services.tournaments-api.loadbalancer.server.port=3000"

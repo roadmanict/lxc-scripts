@@ -2,7 +2,7 @@ server {
 	listen 80;
 	listen [::]:80;
 
-	server_name *.acc.rl-pool.com;
+	server_name *.acc.rl-pool.com acc.rl-pool.com;
 
 	return 301 https://$host$request_uri;
 }

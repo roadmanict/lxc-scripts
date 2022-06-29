@@ -31,7 +31,7 @@ server {
 
 server {
 	listen 443 ssl;
-	server_name *.acc.rl-pool.com;
+	server_name *.acc.rl-pool.com acc.rl-pool.com;
 
 	ssl_certificate /etc/letsencrypt/live/acc.rl-pool.com/fullchain.pem;
 	ssl_certificate_key /etc/letsencrypt/live/acc.rl-pool.com/privkey.pem;

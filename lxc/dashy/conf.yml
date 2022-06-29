@@ -31,10 +31,10 @@ sections:
   icon: fas fa-rocket
   items:
   - title: Traefik
-    url: https://traefik.acc.rlp.gweggemans.nl
+    url: https://traefik.acc.rl-pool.com
   - title: Portainer
-    url: https://portainer.acc.rlp.gweggemans.nl
+    url: https://portainer.acc.rl-pool.com
   - title: Docker registry
-    url: https://registry.acc.rlp.gweggemans.nl
+    url: https://registry.acc.rl-pool.com
   - title: Adminer postgres admin
-    url: https://adminer.acc.rlp.gweggemans.nl
+    url: https://adminer.acc.rl-pool.com

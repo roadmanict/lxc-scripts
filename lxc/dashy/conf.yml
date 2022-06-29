@@ -30,6 +30,8 @@ sections:
 - name: Rocket Poule Acceptance
   icon: fas fa-rocket
   items:
+  - title: Rocket League Pool
+    url: https://acc.rl-pool.com
   - title: Traefik
     url: https://traefik.acc.rl-pool.com
   - title: Portainer

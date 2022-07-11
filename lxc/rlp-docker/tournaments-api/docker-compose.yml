@@ -2,7 +2,7 @@ version: "3"
 
 services:
   tournaments-api:
-    image: registry.acc.rlp.gweggemans.nl/tournaments-api
+    image: registry.acc.rl-pool.com/tournaments-api
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro

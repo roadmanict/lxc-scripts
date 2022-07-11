@@ -2,7 +2,7 @@ version: "3"
 
 services:
   tournaments-listener:
-    image: registry.acc.rlp.gweggemans.nl/tournaments-listener
+    image: registry.acc.rl-pool.com/tournaments-listener
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro

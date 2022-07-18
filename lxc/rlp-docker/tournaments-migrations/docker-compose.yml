@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  tournaments-migrations:
+    image: registry.acc.rl-pool.com/tournaments-migrations
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    external: true

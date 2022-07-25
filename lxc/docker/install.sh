@@ -1,5 +1,5 @@
 #!/bin/sh
-sudo apt-get update
+sudo apt update
 
 sudo apt-get install --yes \
     ca-certificates \

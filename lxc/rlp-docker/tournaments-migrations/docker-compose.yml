@@ -5,6 +5,8 @@ services:
     image: registry.acc.rl-pool.com/tournaments-migrations
     volumes:
       - /etc/localtime:/etc/localtime:ro
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
     env_file:
       - .env
     networks:

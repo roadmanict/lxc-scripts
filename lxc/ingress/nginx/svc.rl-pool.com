@@ -18,7 +18,7 @@ server {
 	client_max_body_size 0;
 
 	location / {
-		proxy_pass http://10.0.3.1:80;
+		proxy_pass http://10.0.4.1:80;
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection "Upgrade";
@@ -38,7 +38,7 @@ server {
 	ssl_trusted_certificate /etc/letsencrypt/live/svc.rl-pool.com/chain.pem;
 
 	location / {
-		proxy_pass http://10.0.3.1:80;
+		proxy_pass http://10.0.4.1:80;
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection "Upgrade";

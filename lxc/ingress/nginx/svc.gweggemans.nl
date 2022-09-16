@@ -22,6 +22,19 @@ server {
 
 server {
 	listen 443 ssl;
+	server_name	slaapkamer.svc.gweggemans.nl;
+
+	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
+	
+	location / {
+		proxy_pass http://192.168.2.15:80;
+	}
+}
+
+server {
+	listen 443 ssl;
 	server_name	jellyfin.svc.gweggemans.nl;
 
 	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;

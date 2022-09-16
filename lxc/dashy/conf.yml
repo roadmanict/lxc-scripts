@@ -27,6 +27,8 @@ sections:
     url: https://adguardhome.svc.gweggemans.nl
   - title: Portainer
     url: https://portainer.svc.gweggemans.nl
+  - title: Volumio
+    url: http://192.168.2.15
 - name: Rocket Poule Acceptance
   icon: fas fa-rocket
   items:

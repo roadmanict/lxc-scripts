@@ -16,7 +16,7 @@ server {
 	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 	
 	location / {
-		proxy_pass http://192.168.2.102:4000;
+		proxy_pass http://10.6.11.102:4000;
 	}
 }
 
@@ -42,7 +42,7 @@ server {
 	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 
 	location / {
-		proxy_pass http://192.168.2.103:8096;
+		proxy_pass http://10.6.11.103:8096;
 	}
 }
 
@@ -61,7 +61,7 @@ server {
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection "upgrade";
 
-		proxy_pass	https://192.168.2.99:8006;
+		proxy_pass	https://10.6.11.99:8006;
 		proxy_buffering off;
 		client_max_body_size 0;
 		proxy_connect_timeout 3600s;
@@ -80,7 +80,7 @@ server {
         ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 
 	location / {
-		proxy_pass http://192.168.2.201:80;
+		proxy_pass http://10.6.11.201:80;
 	}
 }
 
@@ -93,7 +93,7 @@ server {
         ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 
 	location / {
-                proxy_pass http://192.168.2.205:80;
+                proxy_pass http://10.6.11.205:80;
         }
 }
 
@@ -106,7 +106,7 @@ server {
         ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 
 	location / {
-		proxy_pass http://192.168.2.202:80;
+		proxy_pass http://10.6.11.202:80;
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection "Upgrade";

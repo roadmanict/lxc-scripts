@@ -1,5 +1,10 @@
 # lxc-scripts
 
+## Bootstrap Ansible
+```
+wget -q -O - https://raw.githubusercontent.com/roadmanict/pve/main/bootstrap-ansible.sh | bash
+```
+
 ## Bootstrap LXC
 ```
 wget -q -O - https://raw.githubusercontent.com/roadmanict/pve/main/bootstrap.sh | bash

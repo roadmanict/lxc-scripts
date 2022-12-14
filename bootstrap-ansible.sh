@@ -19,4 +19,4 @@ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtoFCjgifvG4D2aT7XE4efIay4iVuMkINrYm
 chmod 700 /home/ansible/.ssh
 chmod 600 /home/ansible/.ssh/authorized_keys
 
-chown -R ansible:ansible /home/lxc/.ssh
+chown -R ansible:ansible /home/ansible/.ssh

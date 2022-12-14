@@ -20,3 +20,7 @@ chmod 700 /home/ansible/.ssh
 chmod 600 /home/ansible/.ssh/authorized_keys
 
 chown -R ansible:ansible /home/ansible/.ssh
+
+echo "ansible ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+visudo -c

@@ -185,22 +185,3 @@ server {
                 proxy_pass http://10.6.11.205:80;
         }
 }
-
-server {
-	listen 443 ssl;
-	server_name *.svc.gweggemans.nl;
-
-	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
-        ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
-
-	location / {
-		proxy_pass http://10.6.11.202:80;
-		proxy_http_version 1.1;
-		proxy_set_header Upgrade $http_upgrade;
-		proxy_set_header Connection "Upgrade";
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header Host $host;
-		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	}
-}

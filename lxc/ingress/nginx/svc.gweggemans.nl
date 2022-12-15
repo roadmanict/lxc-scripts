@@ -34,7 +34,7 @@ server {
 
 server {
 	listen 443 ssl;
-	server_name	pfsense-vm.svc.gweggemans.nl;
+	server_name	unify.svc.gweggemans.nl;
 
 	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
 	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
@@ -47,7 +47,7 @@ server {
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection "upgrade";
 
-		proxy_pass	https://10.6.11.253:8443;
+		proxy_pass	https://10.6.11.115:8123;
 		proxy_buffering off;
 		client_max_body_size 0;
 		proxy_connect_timeout 3600s;
@@ -67,6 +67,20 @@ server {
 	
 	location / {
 		proxy_pass http://10.6.11.102:4000;
+	}
+}
+
+
+server {
+	listen 443 ssl;
+	server_name	home-assistant.svc.gweggemans.nl;
+
+	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
+	
+	location / {
+		proxy_pass http://10.6.11.103:8123;
 	}
 }
 

@@ -90,6 +90,12 @@ server {
 	
 	location / {
 		proxy_pass http://10.6.11.103:8123;
+		proxy_set_header Host $host;
+        proxy_redirect http:// https://;
+        proxy_http_version 1.1;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
 	}
 }
 

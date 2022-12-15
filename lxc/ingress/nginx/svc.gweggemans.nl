@@ -42,27 +42,42 @@ server {
 
 	proxy_redirect off;
 
-	location /wss {
-		proxy_pass https://10.6.11.115:8443/wss;
-		proxy_http_version 1.1;
+	location / {
+		proxy_pass https://10.6.11.115:8443;
+		proxy_ssl_verify off;
+		proxy_ssl_session_reuse on;
 		proxy_buffering off;
 		proxy_set_header Upgrade $http_upgrade;
-		proxy_set_header Connection "Upgrade";
-		proxy_read_timeout 86400;
+		proxy_set_header Connection "upgrade";
+		## Specific to Unifi Controller
+		proxy_hide_header Authorization;
+		proxy_set_header Referer '';
+		proxy_set_header Origin '';
 	}
 
-	location / {
+	location /inform {
+		proxy_pass https://10.6.11.115:8080;
+		proxy_ssl_verify off;
+		proxy_ssl_session_reuse on;
+		proxy_buffering off;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+		## Specific to Unifi Controller
+		proxy_hide_header Authorization;
+		proxy_set_header Referer '';
+		proxy_set_header Origin '';
+	}
+
+	location /wss {
+		proxy_pass https://10.6.11.115:8443;
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection "upgrade";
-
-		proxy_pass_header Authorization;
-		proxy_pass https://10.6.11.115:8443;
-		proxy_set_header Host $host;
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header X-Forwarded-Host $host;
-		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-		proxy_set_header X-Forwarded-Proto $scheme;
+		## Specific to Unifi Controller
+		proxy_set_header Origin '';
+		proxy_buffering off;
+		proxy_hide_header Authorization;
+		proxy_set_header Referer '';
 	}
 }
 

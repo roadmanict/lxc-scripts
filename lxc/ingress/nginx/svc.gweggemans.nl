@@ -47,7 +47,7 @@ server {
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection "upgrade";
 
-		proxy_pass	https://10.6.11.115:8123;
+		proxy_pass	https://10.6.11.115:8443;
 		proxy_buffering off;
 		client_max_body_size 0;
 		proxy_connect_timeout 3600s;

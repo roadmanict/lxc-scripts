@@ -97,6 +97,16 @@ server {
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
 	}
+
+	location /api/websocket {
+        proxy_pass http://10.6.11.103:8123/api/websocket;
+        proxy_set_header Host $host;
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+
+    }
 }
 
 server {

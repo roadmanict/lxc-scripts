@@ -90,7 +90,7 @@ server {
 	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 	
 	location / {
-		proxy_pass http://10.6.11.102:4000;
+		proxy_pass http://10.100.100.102:4000;
 	}
 }
 
@@ -170,19 +170,6 @@ server {
 		proxy_read_timeout 3600s;
 		proxy_send_timeout 3600s;
 		send_timeout 3600s;
-	}
-}
-
-server {
-	listen 443 ssl;
-	server_name	pihole.svc.gweggemans.nl;
-
-	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
-	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
-	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
-
-	location / {
-		proxy_pass http://10.6.11.201:80;
 	}
 }
 

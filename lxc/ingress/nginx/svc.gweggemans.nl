@@ -199,3 +199,16 @@ server {
 		proxy_pass http://10.6.11.205:80;
 	}
 }
+
+server {
+	listen 443 ssl;
+	server_name	nas.svc.gweggemans.nl;
+
+	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
+
+	location / {
+		proxy_pass http://10.100.100.111:80;
+	}
+}

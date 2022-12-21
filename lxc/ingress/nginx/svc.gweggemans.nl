@@ -104,7 +104,7 @@ server {
 	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 	
 	location / {
-		proxy_pass http://10.6.11.103:8123;
+		proxy_pass http://10.100.100.103:8123;
 		proxy_set_header Host $host;
 		proxy_redirect http:// https://;
 		proxy_http_version 1.1;

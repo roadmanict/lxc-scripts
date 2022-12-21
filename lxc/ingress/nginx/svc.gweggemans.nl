@@ -150,7 +150,7 @@ server {
 
 server {
 	listen 443 ssl;
-	server_name	pve-backup.svc.gweggemans.nl;
+	server_name	pbs.svc.gweggemans.nl;
 
 	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
 	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;

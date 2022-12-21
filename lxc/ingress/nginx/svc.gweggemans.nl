@@ -195,7 +195,7 @@ server {
 	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 
 	location / {
-		proxy_pass http://10.6.11.205:80;
+		proxy_pass http://10.100.100.205:80;
 	}
 }
 

@@ -125,32 +125,6 @@ server {
 
 server {
 	listen 443 ssl;
-	server_name	slaapkamer.svc.gweggemans.nl;
-
-	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
-	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
-	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
-	
-	location / {
-		proxy_pass http://192.168.2.15:80;
-	}
-}
-
-server {
-	listen 443 ssl;
-	server_name	jellyfin.svc.gweggemans.nl;
-
-	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
-	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
-	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
-
-	location / {
-		proxy_pass http://10.6.11.103:8096;
-	}
-}
-
-server {
-	listen 443 ssl;
 	server_name	pve.svc.gweggemans.nl;
 
 	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
@@ -165,6 +139,31 @@ server {
 		proxy_set_header Connection "upgrade";
 
 		proxy_pass	https://10.6.11.99:8006;
+		proxy_buffering off;
+		client_max_body_size 0;
+		proxy_connect_timeout 3600s;
+		proxy_read_timeout 3600s;
+		proxy_send_timeout 3600s;
+		send_timeout 3600s;
+	}
+}
+
+server {
+	listen 443 ssl;
+	server_name	pve-backup.svc.gweggemans.nl;
+
+	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
+
+	proxy_redirect off;
+
+	location / {
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+
+		proxy_pass	https://10.100.100.106:8007;
 		proxy_buffering off;
 		client_max_body_size 0;
 		proxy_connect_timeout 3600s;

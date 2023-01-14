@@ -209,7 +209,7 @@ server {
 }
 
 upstream svc-docker-registry {
-	server svc-docker-registry:5000
+	server svc-docker-registry:5000;
 }
 
 server {

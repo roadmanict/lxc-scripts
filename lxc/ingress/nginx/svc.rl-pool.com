@@ -7,7 +7,7 @@ server {
 	return 301 https://$host$request_uri;
 }
 
-upstream svc-docker-registry {
+upstream svc-rl-pool-docker-registry {
 	server svc-docker-registry:5000;
 }
 
@@ -22,7 +22,7 @@ server {
 	client_max_body_size 0;
 
 	location / {
-		proxy_pass http://svc-docker-registry;
+		proxy_pass http://svc-rl-pool-docker-registry;
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection "Upgrade";

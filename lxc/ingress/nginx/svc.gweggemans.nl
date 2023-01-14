@@ -216,9 +216,9 @@ server {
 	listen 443 ssl;
 	server_name registry.svc.gweggemans.nl;
 
-	ssl_certificate /etc/letsencrypt/live/svc.rl-pool.com/fullchain.pem;
-	ssl_certificate_key /etc/letsencrypt/live/svc.rl-pool.com/privkey.pem;
-	ssl_trusted_certificate /etc/letsencrypt/live/svc.rl-pool.com/chain.pem;
+	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 
 	client_max_body_size 0;
 

@@ -233,3 +233,16 @@ server {
 		proxy_set_header X-Forwarded-Proto $scheme;
 	}
 }
+
+server {
+	listen 443 ssl;
+	server_name	nomnomz.svc.gweggemans.nl;
+
+	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
+	
+	location / {
+		proxy_pass http://10.100.100.21:8081;
+	}
+}

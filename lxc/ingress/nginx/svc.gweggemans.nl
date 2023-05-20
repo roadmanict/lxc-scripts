@@ -244,5 +244,8 @@ server {
 	
 	location / {
 		proxy_pass http://10.100.100.21:8081;
+
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
 	}
 }

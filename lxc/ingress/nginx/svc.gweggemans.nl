@@ -250,3 +250,28 @@ server {
 		proxy_set_header Host $http_host;
 	}
 }
+
+upstream diskstation {
+	server diskstation.lan.gweggemans.nl:5001;
+}
+
+server {
+	listen 443 ssl;
+	server_name diskstation.svc.gweggemans.nl;
+
+	client_max_body_size 0;
+
+	location / {
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+
+		proxy_pass	https://diskstation;
+		proxy_buffering off;
+		client_max_body_size 0;
+		proxy_connect_timeout 3600s;
+		proxy_read_timeout 3600s;
+		proxy_send_timeout 3600s;
+		send_timeout 3600s;
+    }
+}

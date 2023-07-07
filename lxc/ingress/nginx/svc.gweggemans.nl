@@ -288,18 +288,6 @@ upstream deluge {
 	server arr-stack.lan.gweggemans.nl:8112;
 }
 
-upstream prowlarr {
-	server arr-stack.lan.gweggemans.nl:9696;
-}
-
-upstream sonarr {
-	server arr-stack.lan.gweggemans.nl:8989;
-}
-
-upstream radarr {
-	server arr-stack.lan.gweggemans.nl:7878;
-}
-
 server {
 	listen 443 ssl;
 	server_name deluge.svc.gweggemans.nl;
@@ -320,6 +308,171 @@ server {
 		proxy_set_header X-Forwarded-Proto $scheme;
 
 		proxy_pass	http://deluge;
+		proxy_buffering off;
+		client_max_body_size 0;
+		proxy_connect_timeout 3600s;
+		proxy_read_timeout 3600s;
+		proxy_send_timeout 3600s;
+		send_timeout 3600s;
+    }
+}
+
+upstream prowlarr {
+	server arr-stack.lan.gweggemans.nl:9696;
+}
+
+server {
+	listen 443 ssl;
+	server_name prowlarr.svc.gweggemans.nl;
+
+	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
+
+	client_max_body_size 0;
+
+	location / {
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header Host $host;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+
+		proxy_pass	http://prowlarr;
+		proxy_buffering off;
+		client_max_body_size 0;
+		proxy_connect_timeout 3600s;
+		proxy_read_timeout 3600s;
+		proxy_send_timeout 3600s;
+		send_timeout 3600s;
+    }
+}
+
+upstream sonarr {
+	server arr-stack.lan.gweggemans.nl:8989;
+}
+
+server {
+	listen 443 ssl;
+	server_name sonarr.svc.gweggemans.nl;
+
+	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
+
+	client_max_body_size 0;
+
+	location / {
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header Host $host;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+
+		proxy_pass	http://sonarr;
+		proxy_buffering off;
+		client_max_body_size 0;
+		proxy_connect_timeout 3600s;
+		proxy_read_timeout 3600s;
+		proxy_send_timeout 3600s;
+		send_timeout 3600s;
+    }
+}
+
+upstream radarr {
+	server arr-stack.lan.gweggemans.nl:7878;
+}
+
+server {
+	listen 443 ssl;
+	server_name radarr.svc.gweggemans.nl;
+
+	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
+
+	client_max_body_size 0;
+
+	location / {
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header Host $host;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+
+		proxy_pass	http://radarr;
+		proxy_buffering off;
+		client_max_body_size 0;
+		proxy_connect_timeout 3600s;
+		proxy_read_timeout 3600s;
+		proxy_send_timeout 3600s;
+		send_timeout 3600s;
+    }
+}
+
+upstream bazarr {
+	server arr-stack.lan.gweggemans.nl:7878;
+}
+
+server {
+	listen 443 ssl;
+	server_name bazarr.svc.gweggemans.nl;
+
+	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
+
+	client_max_body_size 0;
+
+	location / {
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header Host $host;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+
+		proxy_pass	http://bazarr;
+		proxy_buffering off;
+		client_max_body_size 0;
+		proxy_connect_timeout 3600s;
+		proxy_read_timeout 3600s;
+		proxy_send_timeout 3600s;
+		send_timeout 3600s;
+    }
+}
+
+upstream jellyfin {
+	server jellyfin.lan.gweggemans.nl:7878;
+}
+
+server {
+	listen 443 ssl;
+	server_name jellyfin.svc.gweggemans.nl;
+
+	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
+
+	client_max_body_size 0;
+
+	location / {
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header Host $host;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+
+		proxy_pass	http://jellyfin;
 		proxy_buffering off;
 		client_max_body_size 0;
 		proxy_connect_timeout 3600s;

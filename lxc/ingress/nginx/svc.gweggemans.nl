@@ -417,7 +417,7 @@ server {
 }
 
 upstream bazarr {
-	server arr-stack.lan.gweggemans.nl:7878;
+	server arr-stack.lan.gweggemans.nl:6767;
 }
 
 server {

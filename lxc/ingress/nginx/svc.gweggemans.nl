@@ -481,3 +481,36 @@ server {
 		send_timeout 3600s;
     }
 }
+
+upstream authentik {
+    server docker-1.lan.gweggemans.nl:9443;
+    # Improve performance by keeping some connections alive.
+    keepalive 10;
+}
+
+# Upgrade WebSocket if requested, otherwise use keepalive
+map $http_upgrade $connection_upgrade_keepalive {
+    default upgrade;
+    ''      '';
+}
+
+server {
+    # HTTPS server config
+    listen 443 ssl http2;
+    server_name authentik.svc.gweggemans.nl;
+
+    # TLS certificates
+    ssl_certificate /etc/letsencrypt/live/domain.tld/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/domain.tld/privkey.pem;
+
+    # Proxy site
+    location / {
+        proxy_pass https://authentik;
+        proxy_http_version 1.1;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade_keepalive;
+    }
+}

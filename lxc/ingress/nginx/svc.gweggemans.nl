@@ -499,9 +499,9 @@ server {
     listen 443 ssl http2;
     server_name authentik.svc.gweggemans.nl;
 
-    # TLS certificates
-    ssl_certificate /etc/letsencrypt/live/domain.tld/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/domain.tld/privkey.pem;
+	ssl_certificate /etc/letsencrypt/live/svc.gweggemans.nl/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/svc.gweggemans.nl/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/svc.gweggemans.nl/chain.pem;
 
     # Proxy site
     location / {
